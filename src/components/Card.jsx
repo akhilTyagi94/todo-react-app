@@ -14,7 +14,7 @@ const Card = ({ taskObj, index }) => {
         <p>{taskObj.Description}</p>
 
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
-          <i class="far fa-edit" style={{ color: "#5DC250" }}></i>
+          <i class="far fa-edit mr-3" style={{ color: "#5DC250" }}></i>
           <i class="fas fa-trash-alt" style={{ color: "#5DC250" }}></i>
         </div>
       </div>
