@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import EditTask from "../modals/EditTask";
 
-const Card = ({ taskObj, index }) => {
+const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
+  const [modal, setModal] = useState(false);
+
   const colors = [
     {
       primaryColor: "#5D93E1",
@@ -24,6 +27,18 @@ const Card = ({ taskObj, index }) => {
     },
   ];
 
+  const toggle = () => {
+    setModal(!modal);
+  };
+
+  const updateTask = (obj) => {
+    updateListArray(obj, index);
+  };
+
+  const handleDelete = () => {
+    deleteTask(index);
+  };
+
   return (
     <div class="card-wrapper">
       <div
@@ -45,14 +60,22 @@ const Card = ({ taskObj, index }) => {
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>
           <i
             class="far fa-edit m-2"
-            style={{ color: colors[index % 5].primaryColor }}
+            style={{ color: colors[index % 5].primaryColor, cursor: "pointer" }}
+            onClick={() => setModal(true)}
           ></i>
           <i
             class="fas fa-trash-alt"
-            style={{ color: colors[index % 5].primaryColor }}
+            style={{ color: colors[index % 5].primaryColor, cursor: "pointer" }}
+            onClick={handleDelete}
           ></i>
         </div>
       </div>
+      <EditTask
+        modal={modal}
+        toggle={toggle}
+        updateTask={updateTask}
+        taskObj={taskObj}
+      />
     </div>
   );
 };
